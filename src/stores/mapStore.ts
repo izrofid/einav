@@ -33,6 +33,6 @@ export const useMapStore = create<MapStore>((set) => ({
   setRegionData: (data: RegionData | null) => set({ regionData: data }),
 }));
 
-// Optional: Export selector functions for performance optimization
+// Export selector functions for performance optimization
 export const useSelectedRegion = () => useMapStore((state) => state.selectedRegionId);
 export const useRegionData = () => useMapStore((state) => state.regionData);

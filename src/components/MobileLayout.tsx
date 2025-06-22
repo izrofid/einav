@@ -3,6 +3,7 @@ import MapSelector from './MapSelector';
 import LocationPokemonList from './LocationPokemonList';
 import pokeballIcon from '@/assets/pokeball.svg'
 import type { RegionData } from '../stores/mapStore';
+import MapCombobox from './MapCombobox';
 
 interface MobileLayoutProps {
   onRegionDataChange: (regionId: string | null, regionData: RegionData | null) => void;
@@ -18,9 +19,10 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({ onRegionDataChange }) => {
           <img src={pokeballIcon} alt="Pokéball" className="h-6 w-6" />
         </div>
         <MapSelector width="" onRegionDataChange={onRegionDataChange} />
+        <MapCombobox/>
       </div>
       {/* Content with Pokémon list */}
-      <div className="flex-1 overflow-y-auto px-4 pb-4 scrollbar-themed">
+      <div className="flex-1 overflow-y-auto px-4 scrollbar-themed">
         <LocationPokemonList />
       </div>
     </div>

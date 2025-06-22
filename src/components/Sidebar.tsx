@@ -8,7 +8,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
   // Extract the first child as header
   const childrenArray = React.Children.toArray(children);
   const header = childrenArray[0];
-  const rest = childrenArray.slice(1);
+  const body = childrenArray.slice(1);
 
   return (
     <aside 
@@ -19,7 +19,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
         {header}
       </div>
       <div className="flex flex-col space-y-4 py-4">
-        {rest}
+        {body}
       </div>
     </aside>
   );

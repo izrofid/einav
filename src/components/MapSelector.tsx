@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ClickableMapHoenn from "./ClickableMapHoenn";
 import { useMapStore } from "../stores/mapStore";
 import type { RegionData } from "../stores/mapStore";
@@ -14,23 +14,12 @@ const MapSelector: React.FC<MapSelectorProps> = ({
   onRegionDataChange 
 }) => {
 
-  const { selectedRegionId, regionData, setRegionData } = useMapStore();
-  
-  // Effect to monitor region data changes
-  useEffect(() => {
-    if (selectedRegionId === null) {
-      // When selection is cleared
-      onRegionDataChange?.(null, null);
-    } else if (selectedRegionId && regionData) {
-      // When region is selected
-      onRegionDataChange?.(selectedRegionId, regionData);
-    }
-  }, [selectedRegionId, regionData, onRegionDataChange]);
+  const { setRegionData } = useMapStore();
 
   const handleRegionClick = (regionId: string | null) => {
-    
     if (regionId === null) {
       setRegionData(null);
+      onRegionDataChange?.(null, null);
       return;
     }
     
@@ -41,8 +30,9 @@ const MapSelector: React.FC<MapSelectorProps> = ({
       visited: Math.random() > 0.5, // Just an example field
     };
     
-    // Update the store with the new region data
+    // Update both the store and parent component
     setRegionData(mockData);
+    onRegionDataChange?.(regionId, mockData);
   };
 
   return (

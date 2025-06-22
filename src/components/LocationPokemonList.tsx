@@ -57,7 +57,14 @@ const LocationPokemonList: React.FC = () => {
   const hasPokemon = Object.keys(pokemonInLocation).length > 0;
 
   if (!hasPokemon) {
-    return <div className="text-gray-400 text-center">No Pokémon data available for this location</div>;
+    return (
+      <div className="flex items-center justify-center min-h-[50vh]">
+        <div className="text-center">
+          <h2 className="text-2xl font-medium text-neutral-200 mb-2">No Pokémon Data</h2>
+          <p className="text-neutral-400">There are no recorded encounters at this location</p>
+        </div>
+      </div>
+    );
   }
 
   // Group encounters by method type (Walk, Surf, Fishing, Rock Smash)
